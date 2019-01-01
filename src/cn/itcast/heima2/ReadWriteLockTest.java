@@ -5,7 +5,23 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReadWriteLockTest {
+	
+	 static final int SHARED_SHIFT   = 16;
+     static final int SHARED_UNIT    = (1 << SHARED_SHIFT);
+     static final int MAX_COUNT      = (1 << SHARED_SHIFT) - 1;
+     static final int EXCLUSIVE_MASK = (1 << SHARED_SHIFT) - 1;
+     
 	public static void main(String[] args) {
+		
+		/*System.out.println("SHARED_UNIT:" + SHARED_UNIT);      // 65536
+		System.out.println("MAX_COUNT:" + MAX_COUNT);          // 65535
+		System.out.println("EXCLUSIVE_MASK:" + EXCLUSIVE_MASK); // 65535
+		if(true) {return;}*/
+		
+		/**
+		 * 读写锁是通过，同步器的sate你
+		 */
+		
 		final Queue3 q3 = new Queue3();
 		for(int i=0;i<3;i++)
 		{
@@ -32,7 +48,7 @@ public class ReadWriteLockTest {
 }
 
 class Queue3{
-	private Object data = null;
+	private Object data = null;   // 每个资源上都有一把锁，而不是用锁池
 	ReadWriteLock rwl = new ReentrantReadWriteLock();
 	public void get(){
 		rwl.readLock().lock();

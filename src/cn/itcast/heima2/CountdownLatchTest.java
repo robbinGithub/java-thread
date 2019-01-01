@@ -4,15 +4,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 /**
  * 
- *  void await():Èç¹ûµ±Ç°count´óÓÚ0,µ±Ç°Ïß³Ì½«»áwait,Ö±µ½countµÈÓÚ0»òÕßÖĞ¶Ï¡£PS£ºµ±countµÈÓÚ0µÄÊ±ºò£¬ÔÙÈ¥µ÷ÓÃawait()£¬Ïß³Ì½«²»»á×èÈû£¬¶øÊÇÁ¢¼´ÔËĞĞ¡£
+ *  void await():å¦‚æœå½“å‰countå¤§äº0,å½“å‰çº¿ç¨‹å°†ä¼šwait,ç›´åˆ°countç­‰äº0æˆ–è€…ä¸­æ–­ã€‚PSï¼šå½“countç­‰äº0çš„æ—¶å€™ï¼Œå†å»è°ƒç”¨await()ï¼Œçº¿ç¨‹å°†ä¸ä¼šé˜»å¡ï¼Œè€Œæ˜¯ç«‹å³è¿è¡Œã€‚
  * 
- *  boolean await(long timeout, TimeUnit unit)£ºÊ¹µ±Ç°Ïß³ÌÔÚËø´æÆ÷µ¹¼ÆÊıÖÁÁãÖ®Ç°Ò»Ö±µÈ´ı£¬³ı·ÇÏß³Ì±»ÖĞ¶Ï»ò³¬³öÁËÖ¸¶¨µÄµÈ´ıÊ±¼ä¡£
+ *  boolean await(long timeout, TimeUnit unit)ï¼šä½¿å½“å‰çº¿ç¨‹åœ¨é”å­˜å™¨å€’è®¡æ•°è‡³é›¶ä¹‹å‰ä¸€ç›´ç­‰å¾…ï¼Œé™¤éçº¿ç¨‹è¢«ä¸­æ–­æˆ–è¶…å‡ºäº†æŒ‡å®šçš„ç­‰å¾…æ—¶é—´ã€‚
 
-    void countDown()£º µİ¼õËø´æÆ÷µÄ¼ÆÊı£¬Èç¹û¼ÆÊıµ½´ïÁã£¬ÔòÊÍ·ÅËùÓĞµÈ´ıµÄÏß³Ì¡£
+    void countDown()ï¼š é€’å‡é”å­˜å™¨çš„è®¡æ•°ï¼Œå¦‚æœè®¡æ•°åˆ°è¾¾é›¶ï¼Œåˆ™é‡Šæ”¾æ‰€æœ‰ç­‰å¾…çš„çº¿ç¨‹ã€‚
 	
-	long getCount() £º»ñµÃ¼ÆÊıµÄÊıÁ¿
+	long getCount() ï¼šè·å¾—è®¡æ•°çš„æ•°é‡
 	
-	String toString() £ºÃ»Ê²Ã´ºÃËµµÄ
+	String toString() ï¼šæ²¡ä»€ä¹ˆå¥½è¯´çš„
 
 
  * @author robbin
@@ -28,11 +28,11 @@ public class CountdownLatchTest {
 			Runnable runnable = new Runnable(){
 					public void run(){
 					try {
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "Õı×¼±¸½ÓÊÜÃüÁî");	
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "æ­£å‡†å¤‡æ¥å—å‘½ä»¤");	
 						cdOrder.await();        // wait
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "ÒÑ½ÓÊÜÃüÁî");	
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "å·²æ¥å—å‘½ä»¤");	
 						Thread.sleep((long)(Math.random()*10000));	
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "»ØÓ¦ÃüÁî´¦Àí½á¹û");	
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "å›åº”å‘½ä»¤å¤„ç†ç»“æœ");	
 													
 						cdAnswer.countDown();	 // -1					
 					} catch (Exception e) {
@@ -45,11 +45,11 @@ public class CountdownLatchTest {
 		try {
 			Thread.sleep((long)(Math.random()*10000));
 		
-			System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "¼´½«·¢²¼ÃüÁî");
+			System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "å³å°†å‘å¸ƒå‘½ä»¤");
 			cdOrder.countDown();
-			System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "ÒÑ·¢ËÍÃüÁî£¬ÕıÔÚµÈ´ı½á¹û");
+			System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "å·²å‘é€å‘½ä»¤ï¼Œæ­£åœ¨ç­‰å¾…ç»“æœ");
 			cdAnswer.await();
-			System.out.println("Ïß³Ì" + Thread.currentThread().getName() + "ÒÑÊÕµ½ËùÓĞÏìÓ¦½á¹û");	
+			System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + "å·²æ”¶åˆ°æ‰€æœ‰å“åº”ç»“æœ");	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
