@@ -4,11 +4,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 1¡¢ÀàËµÃ÷£º Ò»¸öÍ¬²½¸¨ÖúÀà£¬ËüÔÊĞíÒ»×éÏß³Ì»¥ÏàµÈ´ı£¬Ö±µ½µ½´ïÄ³¸ö¹«¹²ÆÁÕÏµã (common barrier point)¡£
- * ÔÚÉæ¼°Ò»×é¹Ì¶¨´óĞ¡µÄÏß³ÌµÄ³ÌĞòÖĞ£¬ÕâĞ©Ïß³Ì±ØĞë²»Ê±µØ»¥ÏàµÈ´ı£¬´ËÊ± CyclicBarrier ºÜÓĞÓÃ¡£ÒòÎª¸Ã barrier
- * ÔÚÊÍ·ÅµÈ´ıÏß³Ìºó¿ÉÒÔÖØÓÃ£¬ËùÒÔ³ÆËüÎªÑ­»· µÄ barrier¡£
+ * 1ã€ç±»è¯´æ˜ï¼š ä¸€ä¸ªåŒæ­¥è¾…åŠ©ç±»ï¼Œå®ƒå…è®¸ä¸€ç»„çº¿ç¨‹äº’ç›¸ç­‰å¾…ï¼Œç›´åˆ°åˆ°è¾¾æŸä¸ªå…¬å…±å±éšœç‚¹ (common barrier point)ã€‚
+ * åœ¨æ¶‰åŠä¸€ç»„å›ºå®šå¤§å°çš„çº¿ç¨‹çš„ç¨‹åºä¸­ï¼Œè¿™äº›çº¿ç¨‹å¿…é¡»ä¸æ—¶åœ°äº’ç›¸ç­‰å¾…ï¼Œæ­¤æ—¶ CyclicBarrier å¾ˆæœ‰ç”¨ã€‚å› ä¸ºè¯¥ barrier
+ * åœ¨é‡Šæ”¾ç­‰å¾…çº¿ç¨‹åå¯ä»¥é‡ç”¨ï¼Œæ‰€ä»¥ç§°å®ƒä¸ºå¾ªç¯ çš„ barrierã€‚
  * 
- * 2¡¢Ê¹ÓÃ³¡¾°£º ĞèÒªËùÓĞµÄ×ÓÈÎÎñ¶¼Íê³ÉÊ±£¬²ÅÖ´ĞĞÖ÷ÈÎÎñ£¬Õâ¸öÊ±ºò¾Í¿ÉÒÔÑ¡ÔñÊ¹ÓÃCyclicBarrier¡£
+ * 2ã€ä½¿ç”¨åœºæ™¯ï¼š éœ€è¦æ‰€æœ‰çš„å­ä»»åŠ¡éƒ½å®Œæˆæ—¶ï¼Œæ‰æ‰§è¡Œä¸»ä»»åŠ¡ï¼Œè¿™ä¸ªæ—¶å€™å°±å¯ä»¥é€‰æ‹©ä½¿ç”¨CyclicBarrierã€‚
  * 
  * @author robbin.zhang
  * @date 2017/03/15 15:49
@@ -24,17 +24,17 @@ public class CyclicBarrierTest {
 					public void run(){
 					try {
 						Thread.sleep((long)(Math.random()*10000));	
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + 
-								"¼´½«µ½´ï¼¯ºÏµØµã1£¬µ±Ç°ÒÑÓĞ" + (cb.getNumberWaiting()+1) + "¸öÒÑ¾­µ½´ï£¬" + (cb.getNumberWaiting()==2?"¶¼µ½ÆëÁË£¬¼ÌĞø×ß°¡":"ÕıÔÚµÈºò"));						
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + 
+								"å³å°†åˆ°è¾¾é›†åˆåœ°ç‚¹1ï¼Œå½“å‰å·²æœ‰" + (cb.getNumberWaiting()+1) + "ä¸ªå·²ç»åˆ°è¾¾ï¼Œ" + (cb.getNumberWaiting()==2?"éƒ½åˆ°é½äº†ï¼Œç»§ç»­èµ°å•Š":"æ­£åœ¨ç­‰å€™"));						
 						cb.await();
 						
 						Thread.sleep((long)(Math.random()*10000));	
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + 
-								"¼´½«µ½´ï¼¯ºÏµØµã2£¬µ±Ç°ÒÑÓĞ" + (cb.getNumberWaiting()+1) + "¸öÒÑ¾­µ½´ï£¬" + (cb.getNumberWaiting()==2?"¶¼µ½ÆëÁË£¬¼ÌĞø×ß°¡":"ÕıÔÚµÈºò"));
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + 
+								"å³å°†åˆ°è¾¾é›†åˆåœ°ç‚¹2ï¼Œå½“å‰å·²æœ‰" + (cb.getNumberWaiting()+1) + "ä¸ªå·²ç»åˆ°è¾¾ï¼Œ" + (cb.getNumberWaiting()==2?"éƒ½åˆ°é½äº†ï¼Œç»§ç»­èµ°å•Š":"æ­£åœ¨ç­‰å€™"));
 						cb.await();	
 						Thread.sleep((long)(Math.random()*10000));	
-						System.out.println("Ïß³Ì" + Thread.currentThread().getName() + 
-								"¼´½«µ½´ï¼¯ºÏµØµã3£¬µ±Ç°ÒÑÓĞ" + (cb.getNumberWaiting() + 1) + "¸öÒÑ¾­µ½´ï£¬" + (cb.getNumberWaiting()==2?"¶¼µ½ÆëÁË£¬¼ÌĞø×ß°¡":"ÕıÔÚµÈºò"));						
+						System.out.println("çº¿ç¨‹" + Thread.currentThread().getName() + 
+								"å³å°†åˆ°è¾¾é›†åˆåœ°ç‚¹3ï¼Œå½“å‰å·²æœ‰" + (cb.getNumberWaiting() + 1) + "ä¸ªå·²ç»åˆ°è¾¾ï¼Œ" + (cb.getNumberWaiting()==2?"éƒ½åˆ°é½äº†ï¼Œç»§ç»­èµ°å•Š":"æ­£åœ¨ç­‰å€™"));						
 						cb.await();						
 					} catch (Exception e) {
 						e.printStackTrace();
